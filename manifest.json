@@ -1,0 +1,14 @@
+{
+    "name": "6502 IDE Emulator",
+    "short_name": "6502ide",
+    "lang": "ru-RU",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "icon.jpg",
+        "sizes": "200x254",
+        "type": "image/jpeg"
+      }
+    ]
+  }
