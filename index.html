@@ -1,0 +1,97 @@
+<head>
+    <title>6502 IDE</title>
+    <script src="./ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+        #editor { 
+            position: absolute;
+            top: 0;
+            right: 512px;
+            bottom: 0;
+            left: 0;
+        }
+
+        #canvas { 
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: calc(100% - 512px);
+            background: black;
+        }
+
+        .buttons { 
+            position: absolute;
+            top: 512;
+            right: 0;
+            left: calc(100% - 512px);
+        }
+
+        .messages { 
+            position: absolute;
+            top: 600;
+            right: 0;
+            left: calc(100% - 512px);
+        }
+    </style>
+</head>
+  <body>
+    <div id="editor">loop: lda $fe       ; A=rnd
+        sta $00       ; ZP(0)=A
+        lda $fe
+        and #$3       ; A=A&3
+        clc           ; Clear carry
+        adc #$2       ; A+=2
+        sta $01       ; ZP(1)=A
+        lda $fe       ; A=rnd
+        ldy #$0       ; Y=0
+        sta ($00),y   ; ZP(0),ZP(1)=y
+        jmp loop
+  
+    </div>
+    <canvas id="canvas" class="screen"></canvas>
+    <div class="buttons">
+        
+<input type="button" value="Compile" id="compileButton" onclick="compileCode();" disabled="">
+<input type="button" value="Run" id="runButton" onclick="runBinary();">
+<input type="button" value="Reset" id="resetButton" onclick="reset();">
+
+      </div>
+
+      <div class="messages" id="messages"></div>
+
+
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/assembly_x86");
+    </script>
+    <script src="./assembler.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script>
+editor.on("change", () => editor.getSession().clearAnnotations());
+
+function doit()
+{
+    
+    try
+    {
+        assemble(editor.getValue());
+    }
+    catch(err)
+    {
+        alert(err.msg || err);
+        editor.gotoLine((err.index || 0) + 1, 0, true);
+        editor.getSession().setAnnotations([{
+            row: err.index || 0,
+            text: err.msg || err,
+            type: "error" // also warning and information
+        }]);
+
+        return;
+    }
+    setTimeout(run, 0);
+}
+
+    </script>
+  </body>
