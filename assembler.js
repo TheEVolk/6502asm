@@ -607,9 +607,15 @@ function compileCode() {
     memory[defaultCodePC] = 0x00;
   } else {
     str = lines[x].replace( "<", "&lt;" ).replace( ">", "&gt;" );
-    message( "<b>Syntax error line " + (x+1) + ": " + str + "</b>");
+    message( "<b>Синтаксическая ошибка (" + (x+1) + "): " + str + "</b>");
     document.getElementById( "runButton" ).disabled = true;
     document.getElementById( "compileButton" ).disabled = false;
+    editor.gotoLine(x+1, 0, true);
+    editor.getSession().setAnnotations([{
+      row: x,
+      text: "Синтаксическая ошибка.",
+      type: "error" // also warning and information
+    }]);
     return;
   }
 
