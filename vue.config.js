@@ -3,7 +3,5 @@ module.exports = {
     'vuetify'
   ],
   outputDir: 'docs',
-  publicPath: process.env.GH_PAGES === '1'
-    ? '/6502asm/'
-    : '/'
+  publicPath: '/6502asm/'
 }
