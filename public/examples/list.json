@@ -1,0 +1,32 @@
+[
+  {
+    "name": "random",
+    "description": "A color noise",
+    "file": "random.asm"
+  },
+  {
+    "name": "Calculator from 6502asm.com by Sid Liu",
+    "description": "A color noise",
+    "file": "calculator.asm"
+  },
+  {
+    "name": "Adventure from 6502asm.com",
+    "description": "A simple adventure-like game",
+    "file": "adventure.asm"
+  },
+  {
+    "name": "Skier for 6502asm.com by ern0@linkbroker.hu",
+    "description": "A skier game",
+    "file": "skier.asm"
+  },
+  {
+    "name": "Game of Life",
+    "description": "Conway's Game of Life",
+    "file": "gameoflife.asm"
+  },
+  {
+    "name": "Shake",
+    "description": "Shake game from https://skilldrick.github.io/easy6502",
+    "file": "shake.asm"
+  }
+]
