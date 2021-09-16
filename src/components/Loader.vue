@@ -32,14 +32,14 @@ export default {
   }),
 
   async mounted() {
-    this.items = await fetch('/examples/list.json').then(v => v.json());
+    this.items = await fetch('examples/list.json').then(v => v.json());
   },
 
   methods: {
     async load(file) {
       this.dialog = false;
       this.$emit('load', '; Loading...');
-      this.$emit('load', await fetch(`/examples/${file}`).then(v => v.text()));
+      this.$emit('load', await fetch(`examples/${file}`).then(v => v.text()));
     }
   }
 }
